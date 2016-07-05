@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Module Configuration Assignment 2</title>
+
+	<!-- Create 4 different routes with different Views -->
+
+	
+
+	<!-- SCRIPTS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script type="text/javascript" src="angular-route.js"></script>
+	<script type="text/javascript">
+		    var module = angular.module("myApp", ['ngRoute']);
+		    module.controller("RouteController", function($scope, $routeParams) {
+		        $scope.param = $routeParams.param;
+		       // alert($scope.param);
+		    })
+		    module.controller("myctrl",function($scope){
+		        $scope.message = "Welcome";
+		    })
+
+    		module.config(['$routeProvider',
+		        function($routeProvider) {
+		            $routeProvider.
+		                    when('/oneplus', {
+		                        templateUrl: 'oneplus.html',
+		                        controller: 'RouteController'
+		                    }).
+		                    when('/samsung', {
+		                        templateUrl: 'samsung.html',
+		                        controller: 'RouteController'
+		                    }).
+		                    when('/apple', {
+		                        templateUrl: 'apple.html',
+		                        controller: 'RouteController'
+		                    }).
+		                    when('/nokia', {
+		                        templateUrl: 'nokia.html',
+		                        controller: 'RouteController'
+		                    }).
+		                    otherwise({						
+		                        redirectTo: '/',
+		                        templateUrl:'hello.html',
+		                        controller:'myctrl'
+		                    });
+	        }]);
+		</script>
+
+</head>
+
+<body ng-app="myApp">
+
+	    <p> Click below </p>
+		<p><a href="#/">Default</a></p>
+		
+
+		<a href="#oneplus"> ONEPLUS </a> <br> <BR>
+		<a href="#samsung"> SAMSUNG </a> <br> <BR>
+		<a href="#apple"> APPLE </a> <br> <BR>
+		<a href="#nokia"> NOKIA </a> <br> <BR>
+		
+		<div ng-view></div>
+	
+
+</body>
+</html>
